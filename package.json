@@ -1,0 +1,26 @@
+{
+  "name": "resource-management-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pralhad086/resource-management-system.git"
+  },
+  "author": "Pralhad Rajgor & Rajeev Sharma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pralhad086/resource-management-system/issues"
+  },
+  "homepage": "https://github.com/Pralhad086/resource-management-system#readme",
+  "devDependencies": {
+    "assemble": "^0.17.1",
+    "grunt": "^1.0.1",
+    "grunt-assemble": "^0.5.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-sass": "^1.0.0"
+  }
+}
