@@ -1,5 +1,24 @@
-.emp-data{
-  img{
-    width: 100px;
+.emp-data-page{
+  .top-header, .emp-data-box{
+    padding: 20px 0;
   }
+  .top-header{
+    border-bottom: 1px solid #eee;
+    .logo{
+      max-width: 70px;
+    }
+  }
+
+  .emp-data-box{
+    .emp-table-title{
+      font-weight: 700;
+      text-decoration: underline;
+    }
+    .emp-data{
+      img{
+        width: 100px;
+      }
+    }
+  }
+
 }
