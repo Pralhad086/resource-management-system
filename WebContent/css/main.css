@@ -1,7 +1,13 @@
 .container {
-  border-left: 1px solid black; }
+  border-left: 1px solid #eee; }
 
-.emp-data-page .top-header, .emp-data-page .emp-data-box {
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+
+.emp-data-page .top-header, .emp-data-page .emp-data-box, .emp-data-page .emp-data-title {
   padding: 20px 0; }
 .emp-data-page .top-header {
   border-bottom: 1px solid #eee; }
