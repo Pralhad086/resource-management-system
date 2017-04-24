@@ -5,3 +5,4 @@ node_modules/
 .sass-cache/
 app/css/main.css
 app/index.html
+WebContent/
