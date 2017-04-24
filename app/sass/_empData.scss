@@ -8,13 +8,17 @@
       max-width: 70px;
     }
   }
-
-  .emp-data-box{
+  .emp-data-title{
     .emp-table-title{
       font-weight: 700;
       text-decoration: underline;
+      //text-align: center;
     }
+  }
+
+  .emp-data-box{
     .emp-data{
+      //text-align: center;
       img{
         width: 100px;
       }
