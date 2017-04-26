@@ -1,0 +1,127 @@
+--- layout: default.hbs ---
+<div class="container emp-data-form form-horizontal" ng-app="empDataForm" ng-controller="empDataFormCtrl">
+    <div class="row">
+      <div class="col-md-12">
+
+        <form id="emp-detail-form" ng-submit="submitForm()">
+
+          <div class="form-group row">
+            <label for="profile-pic" class="col-md-2 col-form-label">Profile picture:</label>
+            <div class="col-md-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                <input  name="emp_pic" ng-model="user.emp_pic" placeholder="Upload Profile Picture" class="form-control"  type="file" onchange="angular.element(this).scope().photoChanged(this.files)">
+                <!-- <img ng-src="\{{ thumbnail.dataUrl }}" /> Display the image -->
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="first-name" class="col-md-2 col-form-label">First Name:</label>
+            <div class="col-md-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input  name="emp_first_name" ng-model="user.emp_first_name" placeholder="First Name" class="form-control"  type="text">
+              </div>
+
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="last-name" class="col-md-2 col-form-label">Last Name:</label>
+            <div class="col-md-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input  name="emp_last_name" ng-model="user.emp_last_name" placeholder="Last Name" class="form-control"  type="text">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="desgination" class="col-md-2 col-form-label">Designation:</label>
+            <div class="col-md-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                <input name="emp_designation" ng-model="user.emp_designation" class="form-control" placeholder="Designation" type="text">
+              </div>
+
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="technical-skill" class="col-md-2 col-form-label">Technical Skills:</label>
+            <div class="checkbox col-md-10">
+              <label><input type="checkbox" class="emp-tech-skill" name="javascript" ng-model="user.emp_skill"> JavaScript  </label>
+              <label><input type="checkbox" class="emp-tech-skill" name="css3" ng-model="user.emp_skill"> CSS3  </label>
+              <label><input type="checkbox" class="emp-tech-skill" name="css" ng-model="user.emp_skill"> CSS  </label>
+              <label><input type="checkbox" class="emp-tech-skill" name="html" ng-model="user.emp_skill"> HTML  </label>
+              <label><input type="checkbox" class="emp-tech-skill" name="html5" ng-model="user.emp_skill"> HTML5  </label>
+              <label><input type="checkbox" class="emp-tech-skill" name="sass" ng-model="user.emp_skill"> SASS  </label>
+              <label><input type="checkbox" class="emp-tech-skill" name="less" ng-model="user.emp_skill"> LESS  </label>
+              <label><input type="checkbox" class="emp-tech-skill" name="grunt" ng-model="user.emp_skill"> Grunt  </label>
+              <label><input type="checkbox" class="emp-tech-skill" name="git" ng-model="user.emp_skill"> GIT  </label>
+              <label><input type="checkbox" class="emp-tech-skill" name="gulp" ng-model="user.emp_skill"> Gulp  </label>
+              <label><input type="checkbox" class="emp-tech-skill" name="reactJs" ng-model="user.emp_skill"> React JS  </label>
+              <label><input type="checkbox" class="emp-tech-skill" name="angularJs1" ng-model="user.emp_skill"> Angular JS  1</label>
+              <label><input type="checkbox" class="emp-tech-skill" name="angularjs2" ng-model="user.emp_skill"> Angular JS  2</label>
+              <label><input type="checkbox" class="emp-tech-skill" name="backboneJs" ng-model="user.emp_skill"> Backbone JS  </label>
+            </div>
+            <label for="technical-skill" class="col-md-2 col-form-label">Other skills if any:</label>
+            <div class="col-md-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                <input name="emp_skill" ng-model="user.emp_skill" class="form-control" placeholder="Additional skills if any"></input>
+                <!-- <textarea class="form-control" name="emp_skill" placeholder="Skill Description"></textarea> -->
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="email-id" class="col-md-2 col-form-label">Email ID:</label>
+            <div class="col-md-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                <input name="emp_email" ng-model="user.emp_email" placeholder="E-Mail Address" class="form-control"  type="text">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="skype-id" class="col-md-2 col-form-label">Skype ID:</label>
+            <div class="col-md-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                <input name="emp_skype_id" ng-model="user.emp_skype_id" placeholder="Skype ID" class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="contact" class="col-md-2 col-form-label">Contact:</label>
+            <div class="col-md-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                <input name="emp_contact" ng-model="user.emp_contact" placeholder="(+91)976-2282437" class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="resume" class="col-md-2 col-form-label">Upload Resume:</label>
+            <div class="col-md-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                <input  name="emp_resume" ng-model="user.emp_resume" placeholder="upload Resume" class="form-control"  type="file">
+              </div>
+            </div>
+          </div>
+
+          <!-- Success message -->
+          <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+
+          <!-- Button -->
+          <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-12">
+              <button type="submit" class="btn btn-warning">Submit Profile <span class="glyphicon glyphicon-send"></span></button>
+            </div>
+          </div>
+          <div>\{{user}}</div>
+        </form>
+      </div>
+    </div>
+</div>

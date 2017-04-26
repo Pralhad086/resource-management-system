@@ -18,3 +18,11 @@
   text-decoration: underline; }
 .emp-data-page .emp-data-box .emp-data img {
   width: 100px; }
+
+.emp-data-form {
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px; }
+
+#success_message {
+  display: none; }

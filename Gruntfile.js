@@ -73,7 +73,22 @@ module.exports = function(grunt) {
             copy: {
                 files: ['app/js/**/*.js', 'app/assets/images/*.*'],
                 tasks: ['copy']
-            }
+            },
+
+            js: {
+              files: 'app/js/**/*.js',
+              tasks: ['concat']
+            },
+        },
+
+        concat: {
+            options: {
+                separator: ';',
+            },
+            dist: {
+                src: ['app/js/**/*.js'],
+                dest: 'WebContent/js/script.js',
+            },
         },
 
         copy: {
@@ -82,22 +97,29 @@ module.exports = function(grunt) {
                     // includes files within path
                     {
                         expand: true,
-												flatten: true,
-                        src: ['app/js/*.js', 'app/vendor/bootstrap3.3.7/js/*.js'],
+                        flatten: true,
+                        src: ['app/vendor/bootstrap3.3.7/js/*.js'],
                         dest: 'WebContent/js/'
                     },
-										{
+                    {
                         expand: true,
-												flatten: true,
+                        flatten: true,
                         src: ['app/vendor/bootstrap3.3.7/css/*.css'],
                         dest: 'WebContent/css/'
                     },
-										{
+                    {
                         expand: true,
-												flatten: true,
+                        flatten: true,
                         src: ['app/assets/images/*.*'],
                         dest: 'WebContent/images/'
                     },
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: ['app/vendor/bootstrap3.3.7/fonts/*.*'],
+                        dest: 'WebContent/fonts/'
+                    },
+
                 ],
             },
         }
@@ -126,7 +148,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-concat');
 
     //4. Custom or Default tasks
-    grunt.registerTask('default', ['assemble', 'sass', 'copy', 'browserSync', 'watch']);
+    grunt.registerTask('default', ['assemble', 'sass', 'concat', 'copy', 'browserSync', 'watch']);
 };
