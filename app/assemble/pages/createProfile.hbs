@@ -10,7 +10,7 @@
             <div class="col-md-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
-                <input  name="emp_pic" ng-model="user.emp_pic" placeholder="Upload Profile Picture" class="form-control"  type="file" onchange="angular.element(this).scope().photoChanged(this.files)">
+                <input  name="emp_pic" ng-model="user.emp_pic" placeholder="Upload Profile Picture" class="form-control"  type="file">
                 <!-- <img ng-src="\{{ thumbnail.dataUrl }}" /> Display the image -->
               </div>
             </div>
@@ -48,26 +48,22 @@
           <div class="form-group row">
             <label for="technical-skill" class="col-md-2 col-form-label">Technical Skills:</label>
             <div class="checkbox col-md-10">
-              <label><input type="checkbox" class="emp-tech-skill" name="javascript" ng-model="user.emp_skill"> JavaScript  </label>
-              <label><input type="checkbox" class="emp-tech-skill" name="css3" ng-model="user.emp_skill"> CSS3  </label>
-              <label><input type="checkbox" class="emp-tech-skill" name="css" ng-model="user.emp_skill"> CSS  </label>
-              <label><input type="checkbox" class="emp-tech-skill" name="html" ng-model="user.emp_skill"> HTML  </label>
-              <label><input type="checkbox" class="emp-tech-skill" name="html5" ng-model="user.emp_skill"> HTML5  </label>
-              <label><input type="checkbox" class="emp-tech-skill" name="sass" ng-model="user.emp_skill"> SASS  </label>
-              <label><input type="checkbox" class="emp-tech-skill" name="less" ng-model="user.emp_skill"> LESS  </label>
-              <label><input type="checkbox" class="emp-tech-skill" name="grunt" ng-model="user.emp_skill"> Grunt  </label>
-              <label><input type="checkbox" class="emp-tech-skill" name="git" ng-model="user.emp_skill"> GIT  </label>
-              <label><input type="checkbox" class="emp-tech-skill" name="gulp" ng-model="user.emp_skill"> Gulp  </label>
-              <label><input type="checkbox" class="emp-tech-skill" name="reactJs" ng-model="user.emp_skill"> React JS  </label>
-              <label><input type="checkbox" class="emp-tech-skill" name="angularJs1" ng-model="user.emp_skill"> Angular JS  1</label>
-              <label><input type="checkbox" class="emp-tech-skill" name="angularjs2" ng-model="user.emp_skill"> Angular JS  2</label>
-              <label><input type="checkbox" class="emp-tech-skill" name="backboneJs" ng-model="user.emp_skill"> Backbone JS  </label>
+              <label ng-repeat="skill in emp_skill">
+                <input
+                  type="checkbox"
+                  class="emp-tech-skill"
+                  name="\{{skill}}"
+                  value="\{{skill}}"
+                  ng-click="selectedSkills(skill)"
+                  >\{{skill}}
+              </label>
+
             </div>
             <label for="technical-skill" class="col-md-2 col-form-label">Other skills if any:</label>
             <div class="col-md-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-                <input name="emp_skill" ng-model="user.emp_skill" class="form-control" placeholder="Additional skills if any"></input>
+                <input name="emp_skill_other" ng-model="user.emp_skill_other" class="form-control" placeholder="Additional skills if any"></input>
                 <!-- <textarea class="form-control" name="emp_skill" placeholder="Skill Description"></textarea> -->
               </div>
             </div>
@@ -111,7 +107,7 @@
           </div>
 
           <!-- Success message -->
-          <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+          <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for uploading your profile details, we will get back to you shortly.</div>
 
           <!-- Button -->
           <div class="form-group">
@@ -120,7 +116,7 @@
               <button type="submit" class="btn btn-warning">Submit Profile <span class="glyphicon glyphicon-send"></span></button>
             </div>
           </div>
-          <div>\{{user}}</div>
+          <!-- <div>\{{user}}</div> -->
         </form>
       </div>
     </div>
