@@ -26,6 +26,14 @@ module.exports = function(grunt) {
                     src: ['**/*.hbs'],
                     dest: 'WebContent'
                 }]
+            },
+            view: {
+              files: [{
+                  expand: true,
+                  cwd: 'app/assemble/partials/views',
+                  src: ['**/*.hbs'],
+                  dest: 'WebContent/views'
+              }]
             }
         },
         sass: {

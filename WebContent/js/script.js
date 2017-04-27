@@ -8229,7 +8229,21 @@ if (typeof jQuery === 'undefined') {
         }
     };
 }(window.jQuery));
-;var app = angular.module('empSystemApp', []);
+;var app = angular.module('rms', ['ngRoute']);
+
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+
+  $routeProvider.when("/createProfile", {
+      templateUrl : "/views/createProfile.html",
+      controller: "empCreateProfileCtrl"
+  }).when("/viewProfile", {
+      templateUrl : "/views/viewProfile.html"
+  }).otherwise({ redirectTo: '/' });
+
+  $locationProvider.hashPrefix('');
+
+  }
+]);
 ;app.controller('empCreateProfileCtrl', function($scope) {
     $scope.emp_pic = "";
     $scope.emp_first_name = "";
@@ -8258,26 +8272,6 @@ if (typeof jQuery === 'undefined') {
     }
 
 });
-;// app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-//
-//   $routeProvider
-//   .when("/", {
-//       templateUrl : "index.html"
-//   })
-//   .when("/createProfile", {
-//       templateUrl : "createProfile.html",
-//       controller: "empCreateProfileCtrl"
-//   })
-//   .when("/viewProfile", {
-//       templateUrl : "viewProfile.html"
-//   });
-//
-//   // configure html5 to get links working on jsfiddle
-//
-//   $locationProvider.hashPrefix('');
-//
-//   }
-// ]);
 ;$(document).ready(function() {
   $('#emp-detail-form').bootstrapValidator({
       // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
