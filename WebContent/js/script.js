@@ -8229,6 +8229,55 @@ if (typeof jQuery === 'undefined') {
         }
     };
 }(window.jQuery));
+;var app = angular.module('empSystemApp', []);
+;app.controller('empCreateProfileCtrl', function($scope) {
+    $scope.emp_pic = "";
+    $scope.emp_first_name = "";
+    $scope.emp_last_name = "";
+    $scope.emp_designation = "";
+    $scope.emp_skill = ['Javascript', 'HTML5', 'CSS3', 'Angular JS', 'Backbone JS',
+    'Node JS', 'React JS', 'SASS', 'LESS', 'Grunt', 'Gulp', 'bootstrap', 'Jquery'];
+    $scope.emp_skill_other = "";
+    $scope.emp_email = "";
+    $scope.emp_skype_id = "";
+    $scope.emp_contact = "";
+    $scope.emp_resume = "";
+
+    $scope.user = {};
+    $scope.selection = [];
+
+    // Push selection value for selected skills
+    $scope.selectedSkills = function selectedSkills(skill) {
+        $scope.selection.push(skill);
+    };
+
+    $scope.submitForm = function() {
+        var data = $scope.user;
+        data.emp_Skills = $scope.selection;
+        console.log(data);
+    }
+
+});
+;// app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+//
+//   $routeProvider
+//   .when("/", {
+//       templateUrl : "index.html"
+//   })
+//   .when("/createProfile", {
+//       templateUrl : "createProfile.html",
+//       controller: "empCreateProfileCtrl"
+//   })
+//   .when("/viewProfile", {
+//       templateUrl : "viewProfile.html"
+//   });
+//
+//   // configure html5 to get links working on jsfiddle
+//
+//   $locationProvider.hashPrefix('');
+//
+//   }
+// ]);
 ;$(document).ready(function() {
   $('#emp-detail-form').bootstrapValidator({
       // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -8350,32 +8399,4 @@ if (typeof jQuery === 'undefined') {
           // }, 'json');
       });
 });
-;var app = angular.module('empDataForm', []);
-app.controller('empDataFormCtrl', function($scope, $timeout) {
-    $scope.emp_pic = "";
-    $scope.emp_first_name = "";
-    $scope.emp_last_name = "";
-    $scope.emp_designation = "";
-    $scope.emp_skill = ['Javascript', 'HTML5', 'CSS3', 'Angular JS', 'Backbone JS',
-    'Node JS', 'React JS', 'SASS', 'LESS', 'Grunt', 'Gulp', 'bootstrap', 'Jquery'];
-    $scope.emp_skill_other = "";
-    $scope.emp_email = "";
-    $scope.emp_skype_id = "";
-    $scope.emp_contact = "";
-    $scope.emp_resume = "";
-
-    $scope.user = {};
-    $scope.selection = [];
-
-    // Push selection value for selected skills
-    $scope.selectedSkills = function selectedSkills(skill) {
-        $scope.selection.push(skill);
-    };
-
-    $scope.submitForm = function() {
-        var data = $scope.user;
-        data.emp_Skills = $scope.selection;
-        console.log(data);
-    }
-
-});
+;console.log("Angular Started");

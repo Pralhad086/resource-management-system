@@ -7,6 +7,20 @@
   display: -ms-flexbox;
   display: flex; }
 
+.emp-profile {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+  .emp-profile .create-profile, .emp-profile .view-profile {
+    float: left; }
+  .emp-profile .view-profile {
+    margin-left: 20px; }
+
 .emp-data-page .top-header, .emp-data-page .emp-data-box, .emp-data-page .emp-data-title {
   padding: 20px 0; }
 .emp-data-page .top-header {
