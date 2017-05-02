@@ -10,7 +10,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   .when("/viewProfile", {
       templateUrl : "/views/viewProfile.html"
   })
-  .otherwise({ redirectTo: '/' });
+  .otherwise({ redirectTo: '/', templateUrl : '/views/chooseView.html'});
 
   $locationProvider.hashPrefix('');
 
