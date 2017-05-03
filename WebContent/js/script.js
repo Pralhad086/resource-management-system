@@ -129,15 +129,16 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       controller: "empCreateProfileCtrl"
   })
   .when("/viewProfile", {
-      templateUrl : "/views/viewProfile.html"
+      templateUrl : "/views/viewProfile.html",
+      controller: "empViewProfileCtrl"
   })
-  .otherwise({ redirectTo: '/' });
+  .otherwise({ redirectTo: '/', templateUrl : '/views/chooseView.html'});
 
   $locationProvider.hashPrefix('');
 
   }
 ]);
-;app.controller('empCreateProfileCtrl', function($scope) {
+;app.controller('empCreateProfileCtrl', function($scope, getEmpFormData, $location) {
     $scope.emp_pic = "";
     $scope.emp_first_name = "";
     $scope.emp_last_name = "";
@@ -152,17 +153,47 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 
     $scope.user = {};
     $scope.selection = [];
-
+    var empData = $scope.user;
+    var empFullName;
     // Push selection value for selected skills
     $scope.selectedSkills = function selectedSkills(skill) {
         $scope.selection.push(skill);
     };
 
     $scope.submitForm = function() {
-        var data = $scope.user;
-        data.emp_Skills = $scope.selection;
-        console.log(data);
+        empData.emp_Skills = $scope.selection;
+        empFullName = empData.emp_first_name + " " + empData.emp_last_name;
+        empData.emp_full_name = empFullName;
+        var empList = [];
+        empList.push(empData);
+        getEmpFormData.set(empList);
+        //console.log(empData);
+        $location.path("viewProfile");
     }
 
+});
+;app.factory('getEmpFormData', function() {
+ var empFormSaveData = {}
+ function set(data) {
+   empFormSaveData = data;
+ }
+ function get() {
+  return empFormSaveData;
+ }
+
+ return {
+  set: set,
+  get: get
+ }
+
+});
+;app.controller('empViewProfileCtrl', function($scope, getEmpFormData) {
+  $scope.empFormData = getEmpFormData.get();
+
+  //$scope.emp_full_name = $scope.empFormData.emp_first_name + " " + $scope.empFormData.emp_last_name;
+
+  //$scope.empFormData.push($scope.emp_full_name);
+
+  console.log($scope.empFormData);
 });
 ;console.log("Angular Started");

@@ -8,7 +8,8 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       controller: "empCreateProfileCtrl"
   })
   .when("/viewProfile", {
-      templateUrl : "/views/viewProfile.html"
+      templateUrl : "/views/viewProfile.html",
+      controller: "empViewProfileCtrl"
   })
   .otherwise({ redirectTo: '/', templateUrl : '/views/chooseView.html'});
 
