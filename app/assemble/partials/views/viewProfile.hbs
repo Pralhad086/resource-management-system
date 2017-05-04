@@ -1,3 +1,4 @@
+<a href="#createProfile"> Create another profile </a>
 <div class="container emp-data-page" ng-controller="empViewProfileCtrl">
     <!-- serach area -->
     <div class="row top-header">
@@ -62,7 +63,7 @@
     <!-- Empoyee data table title end here-->
     <div>\{{user}}</div>
     <!-- Employee data table -->
-    <div ng-repeat="empData in empFormData">
+    <div ng-repeat="empData in empFormData track by $index">
       <div class="row emp-data-box">
         <div class="col-md-2">
           <div class="emp-data">
@@ -89,7 +90,7 @@
 
           <div class="emp-data">
             <div class="emp-info">
-              <label class="emp-skill" ng-repeat="empSkillView in empData.emp_Skills">\{{empSkillView}},</label>
+              <label class="emp-skill" ng-repeat="empSkill in empData.emp_Skills">\{{empSkill}},</label>
             </div>
 
           </div>

@@ -1,4 +1,7 @@
-app.controller('empCreateProfileCtrl', function($scope, getEmpFormData, $location) {
+app.controller('empCreateProfileCtrl', function($scope, getEmpFormData, $location, empFormValidation) {
+    var formValidator = empFormValidation.get();
+    formValidator.setupValidation();
+    
     $scope.emp_pic = "";
     $scope.emp_first_name = "";
     $scope.emp_last_name = "";
@@ -24,11 +27,7 @@ app.controller('empCreateProfileCtrl', function($scope, getEmpFormData, $locatio
         empData.emp_Skills = $scope.selection;
         empFullName = empData.emp_first_name + " " + empData.emp_last_name;
         empData.emp_full_name = empFullName;
-        var empList = [];
-        empList.push(empData);
-        getEmpFormData.set(empList);
-        //console.log(empData);
-        $location.path("viewProfile");
+        getEmpFormData.set(empData);
     }
 
 });
