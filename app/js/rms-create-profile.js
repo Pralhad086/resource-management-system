@@ -1,4 +1,7 @@
-app.controller('empCreateProfileCtrl', function($scope) {
+app.controller('empCreateProfileCtrl', function($scope, getEmpFormData, $location, empFormValidation) {
+    var formValidator = empFormValidation.get();
+    formValidator.setupValidation();
+    
     $scope.emp_pic = "";
     $scope.emp_first_name = "";
     $scope.emp_last_name = "";
@@ -13,16 +16,18 @@ app.controller('empCreateProfileCtrl', function($scope) {
 
     $scope.user = {};
     $scope.selection = [];
-
+    var empData = $scope.user;
+    var empFullName;
     // Push selection value for selected skills
     $scope.selectedSkills = function selectedSkills(skill) {
         $scope.selection.push(skill);
     };
 
     $scope.submitForm = function() {
-        var data = $scope.user;
-        data.emp_Skills = $scope.selection;
-        console.log(data);
+        empData.emp_Skills = $scope.selection;
+        empFullName = empData.emp_first_name + " " + empData.emp_last_name;
+        empData.emp_full_name = empFullName;
+        getEmpFormData.set(empData);
     }
 
 });

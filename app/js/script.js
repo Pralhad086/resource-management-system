@@ -1,1 +1,3 @@
-console.log("Angular Started");
+$('document').ready(function(){
+  console.log('Angular Started');
+});

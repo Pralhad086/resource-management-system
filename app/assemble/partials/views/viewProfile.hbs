@@ -1,4 +1,5 @@
-<div class="container emp-data-page">
+<a href="#createProfile"> Create another profile </a>
+<div class="container emp-data-page" ng-controller="empViewProfileCtrl">
     <!-- serach area -->
     <div class="row top-header">
         <div class="col-md-2">
@@ -60,14 +61,15 @@
 
     </div>
     <!-- Empoyee data table title end here-->
-
+    <div>\{{user}}</div>
     <!-- Employee data table -->
-    <div class="row emp-data-box">
+    <div ng-repeat="empData in empFormData track by $index">
+      <div class="row emp-data-box">
         <div class="col-md-2">
           <div class="emp-data">
             <img class="emp-img" src="./images/emp.png" />
             <div class="emp-info">
-              <label class="emp-name">Rajeev Sharma</label>
+              <label class="emp-name">\{{empData.emp_full_name}}</label>
             </div>
 
           </div>
@@ -77,7 +79,7 @@
 
           <div class="emp-data">
             <div class="emp-info">
-              <label class="emp-designation">Designation------</label>
+              <label class="emp-designation">\{{empData.emp_designation }}</label>
 
             </div>
 
@@ -88,15 +90,7 @@
 
           <div class="emp-data">
             <div class="emp-info">
-              <label class="emp-skill">JaveScript</label>
-              <label class="emp-skill">HTML5</label>
-              <label class="emp-skill">CSS3</label>
-              <label class="emp-skill">Bootstrap</label>
-              <label class="emp-skill">Grunt</label>
-              <label class="emp-skill">Gulp</label>
-              <label class="emp-skill">SASS</label>
-              <label class="emp-skill">LESS</label>
-              <label class="emp-skill">GIT</label>
+              <label class="emp-skill" ng-repeat="empSkill in empData.emp_Skills">\{{empSkill}},</label>
             </div>
 
           </div>
@@ -106,8 +100,8 @@
 
           <div class="emp-data">
             <div class="emp-info">
-              E-mail ID: <label class="emp-email-id">rajeev.sharma@digitaslbi.com</label>
-              Skype ID: <label class="emp-skype-id">rajeev.sharma2812</label>
+              E-mail ID: <label class="emp-email-id">\{{empData.emp_email }}</label>
+              Skype ID: <label class="emp-skype-id">\{{empData.emp_skype_id }}</label>
             </div>
 
           </div>
@@ -117,7 +111,7 @@
 
           <div class="emp-data">
             <div class="emp-info">
-              <label class="emp-contact">9762282437</label>
+              <label class="emp-contact">\{{empData.emp_contact }}</label>
             </div>
 
           </div>
@@ -135,74 +129,76 @@
 
         </div>
 
+      </div>
     </div>
 
-    <div class="row emp-data-box">
-        <div class="col-md-2">
-          <div class="emp-data">
-            <img class="emp-img" src="./images/emp2.png" />
-            <div class="emp-info">
-              <label>Emp2</label>
-            </div>
-
+    <!-- <div class="row emp-data-box">
+      <div class="col-md-2">
+        <div class="emp-data">
+          <img class="emp-img" src="./images/emp2.png" />
+          <div class="emp-info">
+            <label>Emp2</label>
           </div>
 
         </div>
-        <div class="col-md-2">
-          <div class="emp-data">
-            <div class="emp-info">
-              <label>Designation------</label>
 
-            </div>
-
-          </div>
-
-        </div>
-        <div class="col-md-2">
-          <div class="emp-data">
-            <div class="emp-info">
-              <label>JaveScript</label>
-              <label>HTML5</label>
-              <label>CSS3</label>
-              <label>Bootstrap</label>
-              <label>Grunt</label>
-              <label>Gulp</label>
-              <label>SASS</label>
-              <label>LESS</label>
-              <label>GIT</label>
-            </div>
-
-          </div>
-
-        </div>
-        <div class="col-md-2">
-          <div class="emp-data">
-            <div class="emp-info">
-              E-mail ID: <label>rajeev.sharma@digitaslbi.com</label>
-              Skype ID: <label>rajeev.sharma2812</label>
-            </div>
-
-          </div>
-
-        </div>
-        <div class="col-md-2">
-          <div class="emp-data">
-            <div class="emp-info">
-              <label>9762282437</label>
-            </div>
+      </div>
+      <div class="col-md-2">
+        <div class="emp-data">
+          <div class="emp-info">
+            <label>Designation</label>
 
           </div>
 
         </div>
 
-        <div class="col-md-2">
-          <div class="emp-data">
-            <div class="emp-info">
-              <label>-----</label>
-            </div>
-
+      </div>
+      <div class="col-md-2">
+        <div class="emp-data">
+          <div class="emp-info">
+            <label>JaveScript</label>
+            <label>HTML5</label>
+            <label>CSS3</label>
+            <label>Bootstrap</label>
+            <label>Grunt</label>
+            <label>Gulp</label>
+            <label>SASS</label>
+            <label>LESS</label>
+            <label>GIT</label>
           </div>
 
-    </div>
+        </div>
+
+      </div>
+      <div class="col-md-2">
+        <div class="emp-data">
+          <div class="emp-info">
+            E-mail ID: <label>rajeev.sharma@digitaslbi.com</label>
+            Skype ID: <label>rajeev.sharma2812</label>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="col-md-2">
+        <div class="emp-data">
+          <div class="emp-info">
+            <label>9762282437</label>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-md-2">
+        <div class="emp-data">
+          <div class="emp-info">
+            <label></label>
+          </div>
+
+        </div>
+
+      </div>
+    </div> -->
     <!-- Employee data table end here -->
 </div>
