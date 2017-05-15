@@ -1,33 +1,35 @@
 app.controller('empCreateProfileCtrl', function($scope, getEmpFormData, $location, empFormValidation) {
     var formValidator = empFormValidation.get();
     formValidator.setupValidation();
-    
-    $scope.emp_pic = "";
-    $scope.emp_first_name = "";
-    $scope.emp_last_name = "";
-    $scope.emp_designation = "";
-    $scope.emp_skill = ['Javascript', 'HTML5', 'CSS3', 'Angular JS', 'Backbone JS',
-    'Node JS', 'React JS', 'SASS', 'LESS', 'Grunt', 'Gulp', 'bootstrap', 'Jquery'];
-    $scope.emp_skill_other = "";
-    $scope.emp_email = "";
-    $scope.emp_skype_id = "";
-    $scope.emp_contact = "";
-    $scope.emp_resume = "";
 
     $scope.user = {};
-    $scope.selection = [];
-    var empData = $scope.user;
-    var empFullName;
-    // Push selection value for selected skills
-    $scope.selectedSkills = function selectedSkills(skill) {
-        $scope.selection.push(skill);
-    };
+    $scope.user.emp_skills = [];
+    $scope.skill_list = [{label: "Javascript",val: false},
+    {label: "HTML5",val: false},
+    {label: "CSS3",val: false},
+    {label: "Angular JS",val: false},
+    {label: "Backbone JS",val: false},
+    {label: "Node JS",val: false},
+    {label: "React JS",val: false},
+    {label: "SASS",val: false},
+    {label: "Grunt",val: false},
+    {label: "Gulp",val: false},
+    {label: "bootstrap",val: false},
+    {label: "Jquery",val: false}];
+
 
     $scope.submitForm = function() {
-        empData.emp_Skills = $scope.selection;
-        empFullName = empData.emp_first_name + " " + empData.emp_last_name;
-        empData.emp_full_name = empFullName;
-        getEmpFormData.set(empData);
+      if(formValidator.getValidator().isValid()){
+        //add selected skills to user object
+        angular.forEach($scope.skill_list, function(obj) {
+            if(obj.val === true){
+              this.push(obj.label);
+            }
+        }, $scope.user.emp_skills);
+
+        $scope.user.emp_full_name = $scope.user.emp_first_name + " " + $scope.user.emp_last_name;
+        getEmpFormData.set($scope.user);
+      }
     }
 
 });

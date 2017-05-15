@@ -16,6 +16,16 @@
           </div>
 
           <div class="form-group row">
+            <label for="employee-id" class="col-md-2 col-form-label">Employee ID:</label>
+            <div class="col-md-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-record"></i></span>
+                <input  name="_id" ng-model="user._id" placeholder="Employee ID" class="form-control"  type="text">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
             <label for="first-name" class="col-md-2 col-form-label">First Name:</label>
             <div class="col-md-10">
               <div class="input-group">
@@ -47,14 +57,13 @@
           <div class="form-group row">
             <label for="technical-skill" class="col-md-2 col-form-label">Technical Skills:</label>
             <div class="checkbox col-md-10">
-              <label ng-repeat="skill in emp_skill">
+              <label ng-repeat="skill in skill_list">
                 <input
                   type="checkbox"
                   class="emp-tech-skill"
-                  name="\{{skill}}"
-                  value="\{{skill}}"
-                  ng-click="selectedSkills(skill)"
-                  >\{{skill}}
+                  name="\{{skill.label}}"
+                  ng-model="skill.val"
+                  >\{{skill.label}}
               </label>
 
             </div>

@@ -1,12 +1,38 @@
-app.factory("getEmpFormData", function() {
+app.factory("getEmpFormData", function($http, $q) {
     var empList = [];
 
     function set(data) {
-        empList.push(data);
+      $http({
+        method: 'GET',
+        params: data,
+        url: '/save'
+      }).then(
+          function successCallback(response) {
+          // this callback will be called asynchronously
+          // when the response is available
+        }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+      });
     }
 
     function get() {
-        return empList;
+      var defer = $q.defer();
+
+      $http({
+        method: 'GET',
+        url: '/showresource'
+      }).then(
+          function successCallback(response) {
+          // this callback will be called asynchronously
+          // when the response is available
+          defer.resolve(response.data);
+        }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+      });
+
+      return defer.promise;
     }
 
     return {
@@ -34,6 +60,16 @@ app.factory("empFormValidation", function() {
                       validators: {
                           notEmpty: {
                               message: "Please upload your profile picture"
+                          }
+                      }
+                  },
+                  _id: {
+                      validators: {
+                          stringLength: {
+                              min: 2,
+                          },
+                          notEmpty: {
+                              message: "Please provide your employee id"
                           }
                       }
                   },
@@ -131,6 +167,9 @@ app.factory("empFormValidation", function() {
 
             });
         });
+      },
+      getValidator: function(){
+        return $("#emp-detail-form").data('bootstrapValidator');
       }
   };
 

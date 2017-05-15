@@ -20,45 +20,73 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
 ;app.controller('empCreateProfileCtrl', function($scope, getEmpFormData, $location, empFormValidation) {
     var formValidator = empFormValidation.get();
     formValidator.setupValidation();
-    
-    $scope.emp_pic = "";
-    $scope.emp_first_name = "";
-    $scope.emp_last_name = "";
-    $scope.emp_designation = "";
-    $scope.emp_skill = ['Javascript', 'HTML5', 'CSS3', 'Angular JS', 'Backbone JS',
-    'Node JS', 'React JS', 'SASS', 'LESS', 'Grunt', 'Gulp', 'bootstrap', 'Jquery'];
-    $scope.emp_skill_other = "";
-    $scope.emp_email = "";
-    $scope.emp_skype_id = "";
-    $scope.emp_contact = "";
-    $scope.emp_resume = "";
 
     $scope.user = {};
-    $scope.selection = [];
-    var empData = $scope.user;
-    var empFullName;
-    // Push selection value for selected skills
-    $scope.selectedSkills = function selectedSkills(skill) {
-        $scope.selection.push(skill);
-    };
+    $scope.user.emp_skills = [];
+    $scope.skill_list = [{label: "Javascript",val: false},
+    {label: "HTML5",val: false},
+    {label: "CSS3",val: false},
+    {label: "Angular JS",val: false},
+    {label: "Backbone JS",val: false},
+    {label: "Node JS",val: false},
+    {label: "React JS",val: false},
+    {label: "SASS",val: false},
+    {label: "Grunt",val: false},
+    {label: "Gulp",val: false},
+    {label: "bootstrap",val: false},
+    {label: "Jquery",val: false}];
+
 
     $scope.submitForm = function() {
-        empData.emp_Skills = $scope.selection;
-        empFullName = empData.emp_first_name + " " + empData.emp_last_name;
-        empData.emp_full_name = empFullName;
-        getEmpFormData.set(empData);
+      if(formValidator.getValidator().isValid()){
+        //add selected skills to user object
+        angular.forEach($scope.skill_list, function(obj) {
+            if(obj.val === true){
+              this.push(obj.label);
+            }
+        }, $scope.user.emp_skills);
+
+        $scope.user.emp_full_name = $scope.user.emp_first_name + " " + $scope.user.emp_last_name;
+        getEmpFormData.set($scope.user);
+      }
     }
 
 });
-;app.factory("getEmpFormData", function() {
+;app.factory("getEmpFormData", function($http, $q) {
     var empList = [];
 
     function set(data) {
-        empList.push(data);
+      $http({
+        method: 'GET',
+        params: data,
+        url: '/save'
+      }).then(
+          function successCallback(response) {
+          // this callback will be called asynchronously
+          // when the response is available
+        }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+      });
     }
 
     function get() {
-        return empList;
+      var defer = $q.defer();
+
+      $http({
+        method: 'GET',
+        url: '/showresource'
+      }).then(
+          function successCallback(response) {
+          // this callback will be called asynchronously
+          // when the response is available
+          defer.resolve(response.data);
+        }, function errorCallback(response) {
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+      });
+
+      return defer.promise;
     }
 
     return {
@@ -86,6 +114,16 @@ app.factory("empFormValidation", function() {
                       validators: {
                           notEmpty: {
                               message: "Please upload your profile picture"
+                          }
+                      }
+                  },
+                  _id: {
+                      validators: {
+                          stringLength: {
+                              min: 2,
+                          },
+                          notEmpty: {
+                              message: "Please provide your employee id"
                           }
                       }
                   },
@@ -183,6 +221,9 @@ app.factory("empFormValidation", function() {
 
             });
         });
+      },
+      getValidator: function(){
+        return $("#emp-detail-form").data('bootstrapValidator');
       }
   };
 
@@ -195,10 +236,12 @@ app.factory("empFormValidation", function() {
   }
 
 });
-;app.controller('empViewProfileCtrl', function($scope, getEmpFormData) {
-  $scope.empFormData = getEmpFormData.get();
-  console.log('List of profile is as below')
-  console.log($scope.empFormData);
+;app.controller('empViewProfileCtrl', function(getEmpFormData, $scope) {
+  getEmpFormData.get().then(function(data){
+      $scope.empFormData = data;
+      //console.log('List of profile is controller')
+      //console.log($scope.empFormData);
+  });
 });
 ;$('document').ready(function(){
   console.log('Angular Started');

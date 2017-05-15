@@ -49,21 +49,7 @@ module.exports = function(grunt) {
                     ext: '.css'
                 }]
             }
-        },
-
-        browserSync: {
-            bsFiles: {
-                src: ['app/assemble/**/*.hbs',
-                    'app/sass/**/*.scss', 'app/js/*.js'
-                ]
-            },
-            options: {
-                watchTask: true,
-                server: {
-                    baseDir: "WebContent"
-                }
-            }
-        },
+        },        
 
         watch: {
             options: {
@@ -153,11 +139,11 @@ module.exports = function(grunt) {
     //grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-livereload');
-    grunt.loadNpmTasks('grunt-browser-sync');
+    //grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-concat');
 
     //4. Custom or Default tasks
-    grunt.registerTask('default', ['assemble', 'sass', 'concat', 'copy', 'browserSync', 'watch']);
+    grunt.registerTask('default', ['assemble', 'sass', 'concat', 'copy', 'watch']);
 };
