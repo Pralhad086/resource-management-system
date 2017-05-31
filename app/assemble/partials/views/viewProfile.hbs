@@ -67,7 +67,7 @@
       <div class="row emp-data-box">
         <div class="col-md-2">
           <div class="emp-data">
-            <img class="emp-img" src="./images/emp.png" />
+            <img class="emp-img" src="\{{empData.emp_pic[0].path}}" />
             <div class="emp-info">
               <label class="emp-name">\{{empData.emp_full_name}}</label>
             </div>
@@ -122,7 +122,7 @@
 
           <div class="emp-data">
             <div class="emp-info">
-              <label>-----</label>
+              <a href="\{{empData.emp_resume[0].path}}" target="_blank"> Download Resume </a>
             </div>
 
           </div>

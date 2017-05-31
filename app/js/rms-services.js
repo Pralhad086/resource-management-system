@@ -2,10 +2,9 @@ app.factory("getEmpFormData", function($http, $q) {
     var empList = [];
 
     function set(data) {
-      $http({
-        method: 'GET',
-        params: data,
-        url: '/save'
+      $http.post('/save', data, {
+          transformRequest: angular.identity,
+          headers: {'Content-Type': undefined}
       }).then(
           function successCallback(response) {
           // this callback will be called asynchronously

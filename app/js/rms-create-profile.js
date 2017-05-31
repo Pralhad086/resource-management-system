@@ -28,7 +28,16 @@ app.controller('empCreateProfileCtrl', function($scope, getEmpFormData, $locatio
         }, $scope.user.emp_skills);
 
         $scope.user.emp_full_name = $scope.user.emp_first_name + " " + $scope.user.emp_last_name;
-        getEmpFormData.set($scope.user);
+
+        //check for bindings
+        // console.log(angular.toJson($scope.user));
+
+        var fd = new FormData();
+        fd.append('emp_pic', $scope.emp_pic);
+        fd.append('emp_resume', $scope.emp_resume);
+        fd.append('emp_data', angular.toJson($scope.user));
+
+        getEmpFormData.set(fd);
       }
     }
 

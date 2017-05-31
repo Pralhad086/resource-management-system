@@ -47,19 +47,42 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         }, $scope.user.emp_skills);
 
         $scope.user.emp_full_name = $scope.user.emp_first_name + " " + $scope.user.emp_last_name;
-        getEmpFormData.set($scope.user);
+
+        //check for bindings
+        // console.log(angular.toJson($scope.user));
+
+        var fd = new FormData();
+        fd.append('emp_pic', $scope.emp_pic);
+        fd.append('emp_resume', $scope.emp_resume);
+        fd.append('emp_data', angular.toJson($scope.user));
+
+        getEmpFormData.set(fd);
       }
     }
 
 });
+;app.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
 ;app.factory("getEmpFormData", function($http, $q) {
     var empList = [];
 
     function set(data) {
-      $http({
-        method: 'GET',
-        params: data,
-        url: '/save'
+      $http.post('/save', data, {
+          transformRequest: angular.identity,
+          headers: {'Content-Type': undefined}
       }).then(
           function successCallback(response) {
           // this callback will be called asynchronously

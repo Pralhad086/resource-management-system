@@ -9,7 +9,7 @@
             <div class="col-md-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
-                <input  name="emp_pic" ng-model="user.emp_pic" placeholder="Upload Profile Picture" class="form-control"  type="file">
+                <input  name="emp_pic" ng-model="user.emp_pic" placeholder="Upload Profile Picture" class="form-control"  type="file" file-model="emp_pic">
                 <!-- <img ng-src="\{{ thumbnail.dataUrl }}" /> Display the image -->
               </div>
             </div>
@@ -109,7 +109,7 @@
             <div class="col-md-10">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
-                <input  name="emp_resume" ng-model="user.emp_resume" placeholder="upload Resume" class="form-control"  type="file">
+                <input  name="emp_resume" ng-model="user.emp_resume" placeholder="upload Resume" class="form-control"  type="file" file-model="emp_resume">
               </div>
             </div>
           </div>
